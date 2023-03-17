@@ -1,4 +1,5 @@
 import NavBar from "@/components/NavBar";
+import NewsBox from "@/components/NewsBox";
 import Sidebar from "@/components/Sidebar";
 export const categories = () => {
   return (
@@ -7,10 +8,21 @@ export const categories = () => {
 
       <div className="flex">
         <Sidebar />
-        <main className="py-8 px-4 ml-64 mr-4">
-          <h1 className="text-3xl font-bold">Main content goes here</h1>
-        </main>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ml-5">
+          <NewsBox />
+          <NewsBox />
+          <NewsBox />
+          <NewsBox />
+
+
+        </div>
+
+
       </div>
+
+
+
     </>
   )
 }
