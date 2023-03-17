@@ -94,7 +94,7 @@ export default function Home(articles) {
 
         <div className='text-white flex justify-center text-xl font-bold p-5 animate-pulse'>Happening Now</div>
 
-        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in India</h2>
+        <h2 className='text-white text-xl border-slate-100 p-2'>Top in India</h2>
 
         <div className='flex'>
 
@@ -114,15 +114,15 @@ export default function Home(articles) {
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
 
-      <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
-  <div className='bg-white rounded-xl inline-flex items-center relative p-2'>
-    Happening Now
-    <span className='absolute top-0 right-0 transform translate-x-0 translate-y-0 h-2 w-2 rounded-full bg-red-500 animate-ping'></span>
-  </div>
-</div>
+        <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
+          <div className='bg-white rounded-xl inline-flex items-center relative p-2'>
+            Happening Now
+            <span className='absolute top-0 right-0 transform translate-x-0 translate-y-0 h-2 w-2 rounded-full bg-red-500 animate-ping'></span>
+          </div>
+        </div>
 
 
-        <h2 className='text-white text-xl border-b border-slate-100 p-2 rounded-xl inline-flex items-center relative'>Top in India</h2>
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in India</h2>
         <div className='flex'>
           {
             topIndia.articles.map((e) => {
@@ -166,7 +166,7 @@ export default function Home(articles) {
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Business</h2>
         <div className='flex'>
-        {
+          {
             topBus.articles.map((e) => {
 
               return (<>
@@ -179,7 +179,7 @@ export default function Home(articles) {
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Technology</h2>
         <div className='flex'>
-        {
+          {
             topTech.articles.map((e) => {
 
               return (<>
@@ -192,7 +192,7 @@ export default function Home(articles) {
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Sports</h2>
         <div className='flex'>
-        {
+          {
             topSports.articles.map((e) => {
 
               return (<>
