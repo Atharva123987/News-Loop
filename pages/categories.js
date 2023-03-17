@@ -1,10 +1,16 @@
 import NavBar from "@/components/NavBar";
+import Sidebar from "@/components/Sidebar";
 export const categories = () =>{
     return(
         <>
         <NavBar/>
-        <h1>This is Categories page</h1>
-        
+
+        <div className="flex">
+        <Sidebar/>
+        <main className="py-8 px-4 ml-64 mr-4">
+        <h1 className="text-3xl font-bold">Main content goes here</h1>
+      </main>
+      </div>
         </>
     )
 }

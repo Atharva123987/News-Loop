@@ -6,17 +6,10 @@ import Imga from '../assets/favicon.png'
 import NavBar from '@/components/NavBar'
 import axios from 'axios';
 import NewsBox from '@/components/NewsBox'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 import SkeletonBox from '@/components/SkeletonBox'
+import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
-
-
-
-
-
-
-
-
 
 export default function Home(articles) {
   // axios.get(`https://newsapi.org/v2/top-headlines?q=tech&apiKey=ee7ca249c1654c309372b43a4a40cf8b&pageSize=3&language=en`)
@@ -32,41 +25,82 @@ export default function Home(articles) {
   //       apiKey: process.env.NEXT_PUBLIC_NEWS_KEY
   //     }
   //   });
-  //   return response.data.articles;
+  //   return response.topIndia.articles;
   // }
 
   // const Articles1 = async () => {
   //   const articles =  await getNews();
   // };
   // const a = Articles1();
-  // console.log(a);
 
-  const [data, setData] = useState(null);
+
+  const [topIndia, setTopIndia] = useState(null);
+  const [topEnt, setTopEnt] = useState(null);
+  const [topPol, setTopPol] = useState(null);
+  const [topBus, setTopBus] = useState(null);
+  const [topTech, setTopTech] = useState(null);
+  const [topSports, setTopSports] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?q=tech&apiKey=ee7ca249c1654c309372b43a4a40cf8b&pageSize=3&language=en`);
-      setData(response.data);
+
+    // FETCHING TOP HEADLINES IN INDIA
+    async function fetchtopIndia() {
+      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=648efa7b54da4d8e86d1025c1a7d0f77&pageSize=3&language=en`);
+      setTopIndia(response.data);
     }
 
-    fetchData();
+    // FETCHING TOP HEADLINES IN ENTERTAINMENT
+    async function fetchtopEnt() {
+      const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=entertainment&country=in&apiKey=648efa7b54da4d8e86d1025c1a7d0f77&pageSize=3&language=en`);
+      setTopEnt(response.data);
+    }
+
+    // FETCHING TOP HEADLINES IN POLITICS
+    async function fetchtopPol() {
+      const response = await axios.get(`https://newsapi.org/v2/everything?q=politics&sortBy=publishedAt&apiKey=648efa7b54da4d8e86d1025c1a7d0f77&pageSize=3&language=en`);
+      setTopPol(response.data);
+    }
+
+    // FETCHING TOP HEADLINES IN BUSINESS
+    async function fetchtopBus() {
+      const response = await axios.get(`https://newsapi.org/v2/everything?q=business&sortBy=publishedAt&apiKey=648efa7b54da4d8e86d1025c1a7d0f77&pageSize=3&language=en`);
+      setTopBus(response.data);
+    }
+
+    // FETCHING TOP HEADLINES IN TECH
+    async function fetchtopTech() {
+      const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=648efa7b54da4d8e86d1025c1a7d0f77&pageSize=3&language=en`);
+      setTopTech(response.data);
+    }
+
+    // FETCHING TOP HEADLINES IN SPORTS
+    async function fetchtopSports() {
+      const response = await axios.get(`https://newsapi.org/v2/everything?q=sports&sortBy=publishedAt&apiKey=648efa7b54da4d8e86d1025c1a7d0f77&pageSize=3&language=en`);
+      setTopSports(response.data);
+    }
+
+    fetchtopSports();
+    fetchtopTech();
+    fetchtopBus();
+    fetchtopPol();
+    fetchtopEnt();
+    fetchtopIndia();
   }, []);
-  if (!data) return (
+
+  if (!topIndia || !topEnt || !topBus || !topTech || !topPol || !topSports) return (
     <>
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
 
         <div className='text-white flex justify-center text-xl font-bold p-5 animate-pulse'>Happening Now</div>
 
-        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Entertainment</h2>
-
-
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in India</h2>
 
         <div className='flex'>
-          
-          <SkeletonBox/>
-          <SkeletonBox/>
-          <SkeletonBox/>
+
+          <SkeletonBox />
+          <SkeletonBox />
+          <SkeletonBox />
 
         </div>
 
@@ -75,38 +109,101 @@ export default function Home(articles) {
     </>
   )
 
-
-
-
   return (
     <>
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
 
-        <div className='text-white flex justify-center text-xl font-bold p-5 animate-pulse'>Happening Now</div>
+      <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
+  <div className='bg-white rounded-xl inline-flex items-center relative p-2'>
+    Happening Now
+    <span className='absolute top-0 right-0 transform translate-x-0 translate-y-0 h-2 w-2 rounded-full bg-red-500 animate-ping'></span>
+  </div>
+</div>
 
-        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Entertainment</h2>
 
-
-
+        <h2 className='text-white text-xl border-b border-slate-100 p-2 rounded-xl inline-flex items-center relative'>Top in India</h2>
         <div className='flex'>
-
-
           {
-            data.articles.map((e, i) => {
-              console.log("here : " + i + "times")
+            topIndia.articles.map((e) => {
+
               return (<>
                 <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
-                </>
+              </>
               )
             })
           }
-          
-
 
 
         </div>
 
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
+        <div className='flex'>
+          {
+            topEnt.articles.map((e) => {
+
+              return (<>
+                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+              </>
+              )
+            })
+          }
+
+        </div>
+
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Politics</h2>
+        <div className='flex'>
+          {
+            topPol.articles.map((e) => {
+
+              return (<>
+                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+              </>
+              )
+            })
+          }
+        </div>
+
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Business</h2>
+        <div className='flex'>
+        {
+            topBus.articles.map((e) => {
+
+              return (<>
+                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+              </>
+              )
+            })
+          }
+        </div>
+
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Technology</h2>
+        <div className='flex'>
+        {
+            topTech.articles.map((e) => {
+
+              return (<>
+                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+              </>
+              )
+            })
+          }
+        </div>
+
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Sports</h2>
+        <div className='flex'>
+        {
+            topSports.articles.map((e) => {
+
+              return (<>
+                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+              </>
+              )
+            })
+          }
+        </div>
+
+        <Footer />
 
       </div>
 
