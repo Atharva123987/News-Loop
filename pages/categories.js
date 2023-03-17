@@ -4,7 +4,7 @@ export const categories = () =>{
         <>
         <NavBar/>
         <h1>This is Categories page</h1>
-
+        
         </>
     )
 }
