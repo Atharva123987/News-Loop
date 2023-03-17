@@ -64,7 +64,7 @@ const SearchButton = styled.button`
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
-
+  const [results, setResults] = useState(null);
   const handleSearch = () => {
     // Do something with the search text
     // console.log(searchText);
@@ -72,12 +72,15 @@ const SearchBar = () => {
     // FETCHING 30 ARTICLES BASED ON SEARCH 
     async function fetchSearch (){
         const response = await axios.get(`https://newsapi.org/v2/everything?q=${searchText}&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=30&language=en`)
-        console.log(response.data)
+        // console.log(response.data)
+        setResults(response.data);
     }
     fetchSearch();
     
     
   };
+
+  
 
   return (
     <SearchContainer>

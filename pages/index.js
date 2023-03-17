@@ -71,12 +71,14 @@ export default function Home(articles) {
     async function fetchtopTech() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopTech(response.data);
+      
     }
 
     // FETCHING TOP HEADLINES IN SPORTS
     async function fetchtopSports() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=sports&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopSports(response.data);
+      
     }
 
     fetchtopSports();
@@ -89,6 +91,7 @@ export default function Home(articles) {
 
   if (!topIndia || !topEnt || !topBus || !topTech || !topPol || !topSports) return (
     <>
+    
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
 
