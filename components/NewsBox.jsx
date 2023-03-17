@@ -15,7 +15,7 @@ export const NewsBox = ({title, description, url, urlToImage}) =>{
             transition ease-in-out delay-50 bg-black hover:scale-105 hover:text-cyan-100 active:text-cyan-600 duration-300
             p-5
             ">     
-            <Link href={`${url}`}>
+            <Link href={`${url}`} >
             <Image
         src={urlToImage}
         alt="Example Image"
@@ -24,8 +24,9 @@ export const NewsBox = ({title, description, url, urlToImage}) =>{
         className="w-72"
         unoptimized
       />
-            <span className='text-xl border-b border-white'>{title}</span>
-            <p>sdfsdfsdfsdf</p>
+            <span className='text-xl  border-white'>{title}</span>
+            <br/>
+            <p>{description}</p>
             </Link>
             </div>
            
