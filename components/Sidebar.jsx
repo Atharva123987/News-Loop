@@ -32,49 +32,49 @@ const Sidebar = (props) => {
                         <GiIndianPalace/>India
                         </a>
                     </li>
-
+                   
                     <li>
-                        <a href="#" data-name="us" onClick={handleClick}  className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
+                        <a href='#' data-name="us" onClick={handleClick} className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900 ">
                         <GiWorld/> World
                         </a>
                     </li>
 
                     <li>
-                        <a data-name="entertainment" onClick={handleClick} href="#" className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
+                        <a  href="#" data-name="entertainment" onClick={handleClick} className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
                            <MdOutlineLocalMovies/> Entertainment
                         </a>
                     </li>
 
                     <li>
-                        <a data-name="politics" onClick={handleClick} href="#" className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
+                        <a href="#" data-name="politics" onClick={handleClick} className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
                            <RiGovernmentLine/> Politics
                         </a>
                     </li>
 
                     <li>
-                        <a data-name="technology" onClick={handleClick} href="#" className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
+                        <a href="#" data-name="technology" onClick={handleClick}  className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
                             <GiLightBulb/>Technology
                         </a>
                     </li>
 
                     <li>
-                        <a data-name="sports" onClick={handleClick} href="#" className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
+                        <a href="#" data-name="sports" onClick={handleClick}  className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
                            <MdOutlineSportsCricket/> Sports
                         </a>
                     </li>
 
                     <li>
-                        <a data-name="business" onClick={handleClick} href="#" className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
+                        <a href="#" data-name="business" onClick={handleClick}  className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
                             <GiMoneyStack/>Business
                         </a>
                     </li>
 
                     <li>
-                        <a data-name="health" onClick={handleClick} href="#" className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
-                         <MdOutlineHealthAndSafety/>   Health
+                        <a href="#" data-name="health" onClick={handleClick}  className="block py-2 px-4 rounded text-white bg-black hover:bg-blue-800 transform transition hover:-translate-y-1 hover:scale-110 active:bg-gray-900">
+                        <MdOutlineHealthAndSafety/>   Health
                         </a>
                     </li>
-
+                    
 
 
                     

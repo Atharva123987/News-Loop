@@ -109,50 +109,50 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
+          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
 
         </div>
       
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
+        <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
 
         </div>
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
+        <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
 
         </div>
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
+        <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
 
         </div>
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
+        <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
 
         </div>
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
-          <span><SkeletonBox /></span>
+        <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"}/></span>
 
         </div>
 
