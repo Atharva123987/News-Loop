@@ -33,7 +33,7 @@ export default function Home(articles) {
   // };
   // const a = Articles1();
 
-
+  
   const [topIndia, setTopIndia] = useState(null);
   const [topEnt, setTopEnt] = useState(null);
   const [topPol, setTopPol] = useState(null);
@@ -47,38 +47,42 @@ export default function Home(articles) {
     async function fetchtopIndia() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopIndia(response.data);
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN ENTERTAINMENT
     async function fetchtopEnt() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=entertainment&country=in&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopEnt(response.data);
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN POLITICS
     async function fetchtopPol() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=politics&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopPol(response.data);
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN BUSINESS
     async function fetchtopBus() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=business&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopBus(response.data);
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN TECH
     async function fetchtopTech() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopTech(response.data);
-      
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN SPORTS
     async function fetchtopSports() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=sports&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopSports(response.data);
-      
+      console.log(response.data)
     }
 
     fetchtopSports();
@@ -89,21 +93,66 @@ export default function Home(articles) {
     fetchtopIndia();
   }, []);
 
-  if (!topIndia || !topEnt || !topBus || !topTech || !topPol || !topSports) return (
+  if (!topIndia || !topEnt || !topPol || !topBus || !topTech || !topSports) return (
     <>
     
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
 
-        <div className='text-white flex justify-center text-xl font-bold p-5 animate-pulse'>Happening Now</div>
+      <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
+          <div className='border-2 border-white text-white rounded-xl inline-flex items-center relative p-2'>
+            Live Now
+            <span className='absolute top-0 right-0 transform translate-x-0 translate-y-0 h-2 w-2 rounded-full bg-red-500 animate-ping'></span>
+          </div>
+        </div>
 
-        <h2 className='text-white text-xl border-slate-100 p-2'>Top in India</h2>
+        <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
+        <div className='grid grid-cols-3 justify-evenly'>
 
-        <div className='flex'>
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
 
-          <SkeletonBox />
-          <SkeletonBox />
-          <SkeletonBox />
+        </div>
+      
+        <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
+        <div className='grid grid-cols-3 justify-evenly'>
+
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+
+        </div>
+        <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
+        <div className='grid grid-cols-3 justify-evenly'>
+
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+
+        </div>
+        <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
+        <div className='grid grid-cols-3 justify-evenly'>
+
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+
+        </div>
+        <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
+        <div className='grid grid-cols-3 justify-evenly'>
+
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+
+        </div>
+        <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
+        <div className='grid grid-cols-3 justify-evenly'>
+
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
+          <span><SkeletonBox /></span>
 
         </div>
 
@@ -117,9 +166,9 @@ export default function Home(articles) {
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
 
-        <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
-          <div className='bg-white rounded-xl inline-flex items-center relative p-2'>
-            Happening Now
+      <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
+          <div className='border-2 border-white text-white rounded-xl inline-flex items-center relative p-2'>
+            Live Now
             <span className='absolute top-0 right-0 transform translate-x-0 translate-y-0 h-2 w-2 rounded-full bg-red-500 animate-ping'></span>
           </div>
         </div>
@@ -128,10 +177,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in India</h2>
         <div className='flex'>
           {
-            topIndia.articles.map((e) => {
+            topIndia.articles.map((e,i) => {
 
               return (<>
-                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i}title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
               </>
               )
             })
@@ -143,10 +192,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
         <div className='flex'>
           {
-            topEnt.articles.map((e) => {
+            topEnt.articles.map((e,i) => {
 
               return (<>
-                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
               </>
               )
             })
@@ -157,10 +206,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Politics</h2>
         <div className='flex'>
           {
-            topPol.articles.map((e) => {
+            topPol.articles.map((e,i) => {
 
               return (<>
-                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
               </>
               )
             })
@@ -170,10 +219,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Business</h2>
         <div className='flex'>
           {
-            topBus.articles.map((e) => {
+            topBus.articles.map((e,i) => {
 
               return (<>
-                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
               </>
               )
             })
@@ -183,10 +232,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Technology</h2>
         <div className='flex'>
           {
-            topTech.articles.map((e) => {
+            topTech.articles.map((e,i) => {
 
               return (<>
-                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i}title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
               </>
               )
             })
@@ -196,10 +245,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Sports</h2>
         <div className='flex'>
           {
-            topSports.articles.map((e) => {
+            topSports.articles.map((e,i) => {
 
               return (<>
-                <NewsBox title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
               </>
               )
             })
