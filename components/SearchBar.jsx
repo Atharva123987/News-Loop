@@ -36,7 +36,7 @@ const SearchInput = styled.input`
   border: none;
   border-bottom: 2px solid #ccc;
   outline: none;
-  animation: ${expand} 0.3s forwards;
+  animation: ${expand} 0.7s forwards;
 
   &:focus {
     border-color: #00CBCB;
