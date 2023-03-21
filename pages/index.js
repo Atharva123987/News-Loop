@@ -96,8 +96,9 @@ export default function Home(articles) {
     fetchtopEnt();
     fetchtopIndia();
   }, []);
-
-  if (!topIndia || !topEnt || !topPol || !topBus || !topTech || !topSports) return (
+  
+  // || !topEnt || !topPol || !topBus || !topTech || !topSports
+  if (!topIndia ) return (
     <>
 
       <NavBar />
