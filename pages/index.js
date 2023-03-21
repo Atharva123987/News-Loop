@@ -54,7 +54,7 @@ export default function Home(articles) {
         method: 'GET',
         url: 'https://bing-news-search1.p.rapidapi.com/news',
         params: {
-          count: '10',
+          count: '3',
           originalImg: 'true',
           cc: 'in',
           safeSearch: 'Off',
