@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SkeletonBox from "@/components/SkeletonBox";
 import Footer from "@/components/Footer";
-export const categories = () => {
+export const Categories = () => {
 
   const [category, setCategory] = useState('');
   const [country, setCountry] = useState('');
   const [data, setData] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+
   function handleData(dataFromChild) {
     if (dataFromChild === 'in' || dataFromChild === 'us') {
       setCountry(dataFromChild);
@@ -109,4 +109,4 @@ export const categories = () => {
     </>
   )
 }
-export default categories;
+export default Categories;
