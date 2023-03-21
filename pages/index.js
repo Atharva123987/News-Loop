@@ -30,75 +30,85 @@ export default function Home(articles) {
     // FETCHING TOP HEADLINES IN INDIA
     async function fetchtopIndia() {
 
-      const options = {
-        method: 'GET',
-        url: 'https://bing-news-search1.p.rapidapi.com/news',
-        params: {
-          count: '3',
-          originalImg: 'true',
-          cc: 'in',
-          safeSearch: 'Off',
-          textFormat: 'Raw'
-        },
-        headers: {
-          'X-BingApis-SDK': 'true',
-          'X-RapidAPI-Key': '91559ed112mshb8f361437369b5ap10f7d2jsn868baad3e673',
-          'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
-        }
+      const url = 'http://eventregistry.org/api/v1/article/getArticles';
+
+      const requestData = {
+        "action": "getArticles",
+        "keyword": "Trump",
+        "categoryUri" : "dmoz/Business/Accounting",
+        "articlesPage": 1,
+        "articlesCount": 3,
+        "articlesSortBy": "date",
+        "articlesSortByAsc": false,
+        "articlesArticleBodyLen": -1,
+        "resultType": "articles",
+        "apiKey": "318f6cff-6dec-4169-a016-91a71af1fdc1",
+        "forceMaxDataTimeWindow": 31
       };
-      
-      const response = await axios.request(options);
-      setTopIndia(response.data.value);
-      console.log("DATA : ",response.data.value)
-      
-      
+
+      axios.get(url, {
+        params: requestData
+      })
+        .then(response => {
+          console.log(response.data.articles.results);
+          console.log(response.data.articles.results[0]);
+          console.log(response.data.articles.results);
+          setTopIndia(response.data.articles.results)
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      // setTopIndia(response.data.value);
+      // console.log("DATA : ", response.data.value)
+
+
     }
 
     // FETCHING TOP HEADLINES IN ENTERTAINMENT
     async function fetchtopEnt() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=entertainment&country=in&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopEnt(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN POLITICS
     async function fetchtopPol() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=politics&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopPol(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN BUSINESS
     async function fetchtopBus() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=business&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopBus(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN TECH
     async function fetchtopTech() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopTech(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN SPORTS
     async function fetchtopSports() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=sports&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopSports(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
-    fetchtopSports();
-    fetchtopTech();
-    fetchtopBus();
-    fetchtopPol();
-    fetchtopEnt();
+    // fetchtopSports();
+    // fetchtopTech();
+    // fetchtopBus();
+    // fetchtopPol();
+    // fetchtopEnt();
     fetchtopIndia();
   }, []);
 
   // || !topEnt || !topPol || !topBus || !topTech || !topSports
-  if (!topIndia ) return (
+  if (!topIndia) return (
     <>
 
       <NavBar />
@@ -183,9 +193,8 @@ export default function Home(articles) {
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
             topIndia.map((e, i) => {
-              if(i===3)return;
               return (<>
-                <NewsBox key={i} title={e.name} description={e.description} url={e.url} urlToImage={e.image?.thumbnail?.contentUrl} />
+                <NewsBox key={i} title={e.title} description={e.body} url={e.url} urlToImage={e.image} />
               </>
               )
             })
