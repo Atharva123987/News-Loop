@@ -16,26 +16,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home(articles) {
-  // axios.get(`https://newsapi.org/v2/top-headlines?q=tech&apiKey=ee7ca249c1654c309372b43a4a40cf8b&pageSize=3&language=en`)
-
-
-  // const getNews = async()=> {
-  //   const response = await axios.get('https://newsapi.org/v2/top-headlines', {
-  //     params: {
-  //       country: 'us',
-  //       q : 'tech',
-  //       pageSize : 3,
-  //       language : 'en',
-  //       apiKey: process.env.NEXT_PUBLIC_NEWS_KEY
-  //     }
-  //   });
-  //   return response.topIndia.articles;
-  // }
-
-  // const Articles1 = async () => {
-  //   const articles =  await getNews();
-  // };
-  // const a = Articles1();
 
 
   const [topIndia, setTopIndia] = useState(null);
@@ -70,10 +50,7 @@ export default function Home(articles) {
       const response = await axios.request(options);
       setTopIndia(response.data.value);
       console.log("DATA : ",response.data.value)
-      // console.log("Title :",response.data.value[0].name)
-      // console.log("Description :",response.data.value[0].description)
-      // console.log("URL :",response.data.value[0].url)
-      // console.log("Image URL :",response.data.value[0].image.thumbnail.contentUrl)
+      
       
     }
 
@@ -215,7 +192,7 @@ export default function Home(articles) {
         </div>
 
 
-        {/* <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
             topEnt.articles.map((e, i) => {
@@ -279,7 +256,7 @@ export default function Home(articles) {
               )
             })
           }
-        </div> */}
+        </div>
 
         <Footer />
 
