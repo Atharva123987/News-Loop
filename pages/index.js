@@ -58,35 +58,35 @@ export default function Home(articles) {
     async function fetchtopEnt() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=entertainment&country=in&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopEnt(response.data);
-      // console.log(response.data)
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN POLITICS
     async function fetchtopPol() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=politics&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopPol(response.data);
-      // console.log(response.data)
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN BUSINESS
     async function fetchtopBus() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=business&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopBus(response.data);
-      // console.log(response.data)
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN TECH
     async function fetchtopTech() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopTech(response.data);
-      // console.log(response.data)
+      console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN SPORTS
     async function fetchtopSports() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=sports&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopSports(response.data);
-      // console.log(response.data)
+      console.log(response.data)
     }
 
     fetchtopSports();
