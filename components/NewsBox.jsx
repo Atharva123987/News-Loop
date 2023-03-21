@@ -27,6 +27,7 @@ export const NewsBox = ({title, description, url, urlToImage}) =>{
           <Image
             src={imgSrc}
             alt="Example Image"
+            alt="Article Image"
             width={500}
             height={500}
             className="w-72"

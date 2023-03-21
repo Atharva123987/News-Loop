@@ -84,7 +84,7 @@ export const categories = () => {
       <div className="flex bg-black">
         <Sidebar sendData={handleData} />
 
-        <div className="grid grid-cols-3">
+        <div className=" grid-cols-3">
 
           {data.articles.map((article, index) => (
             <NewsBox
