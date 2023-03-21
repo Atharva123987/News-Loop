@@ -27,7 +27,7 @@ export default function Home(articles) {
 
   useEffect(() => {
 
-    // FETCHING TOP HEADLINES IN INDIA
+      // FETCHING TOP HEADLINES IN INDIA
     // async function fetchtopIndia() {
 
     //   const url = 'https://eventregistry.org/api/v1/article/getArticles';
@@ -66,9 +66,9 @@ export default function Home(articles) {
 
     // FETCHING TOP HEADLINES IN ENTERTAINMENT
     async function fetchtopEnt() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=entertainment&country=in&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
-      setTopEnt(response.data);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_192645b3358a0994346a3ddcefd5ff7b2143f`);
       console.log(response.data)
+      // setTopEnt(response.data);
     }
 
     // FETCHING TOP HEADLINES IN POLITICS
@@ -99,10 +99,10 @@ export default function Home(articles) {
       console.log(response.data)
     }
 
-    fetchtopSports();
-    fetchtopTech();
-    fetchtopBus();
-    fetchtopPol();
+    // fetchtopSports();
+    // fetchtopTech();
+    // fetchtopBus();
+    // fetchtopPol();
     fetchtopEnt();
     // fetchtopIndia();
   }, []);
