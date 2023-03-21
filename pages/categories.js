@@ -10,7 +10,7 @@ export const categories = () => {
   const [category, setCategory] = useState('');
   const [country, setCountry] = useState('');
   const [data, setData] = useState(null);
-
+  const [pageNumber, setPageNumber] = useState(1);
   function handleData(dataFromChild) {
     if (dataFromChild === 'in' || dataFromChild === 'us') {
       setCountry(dataFromChild);
@@ -34,7 +34,7 @@ export const categories = () => {
 
   useEffect(() => {
     async function fetchCountryData() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=30&language=en`);
+      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=15&page=${pageNumber}&language=en`);
       // console.log(response.data);
       setData(response.data)
       // set the state for country data
@@ -100,6 +100,9 @@ export const categories = () => {
 
 
       </div>
+
+      {/* <Paginator/> */}
+
       <Footer/>
 
 

@@ -11,6 +11,9 @@ export const NewsBox = ({title, description, url, urlToImage}) =>{
     if (urlToImage) {
       setImgSrc(urlToImage);
     }
+    else{
+      setImgSrc(newsImage)
+    }
   }, [urlToImage]);
 
   return (
@@ -18,7 +21,7 @@ export const NewsBox = ({title, description, url, urlToImage}) =>{
       <div className="
         m-2 bg-black shadow-lg shadow-white/20 border border-white/40  hover:shadow-cyan-500/50  hover:border-cyan-300/50 text-white hover:cursor-pointer
         transition ease-in-out delay-50 bg-black hover:scale-105 hover:text-cyan-100 active:text-cyan-600 duration-300
-        p-5  text-ellipsis overflow-hidden
+        p-5  text-ellipsis overflow-hidden 
       ">     
         <Link href={`${url}`} >
           <Image

@@ -11,6 +11,10 @@ import SkeletonBox from '@/components/SkeletonBox'
 import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
+
+
+
+
 export default function Home(articles) {
   // axios.get(`https://newsapi.org/v2/top-headlines?q=tech&apiKey=ee7ca249c1654c309372b43a4a40cf8b&pageSize=3&language=en`)
 
@@ -33,7 +37,7 @@ export default function Home(articles) {
   // };
   // const a = Articles1();
 
-  
+
   const [topIndia, setTopIndia] = useState(null);
   const [topEnt, setTopEnt] = useState(null);
   const [topPol, setTopPol] = useState(null);
@@ -42,47 +46,70 @@ export default function Home(articles) {
   const [topSports, setTopSports] = useState(null);
 
   useEffect(() => {
-   
+
     // FETCHING TOP HEADLINES IN INDIA
     async function fetchtopIndia() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
-      setTopIndia(response.data);
-      console.log(response.data)
+
+      const options = {
+        method: 'GET',
+        url: 'https://bing-news-search1.p.rapidapi.com/news',
+        params: {
+          count: '10',
+          originalImg: 'true',
+          cc: 'in',
+          safeSearch: 'Off',
+          textFormat: 'Raw'
+        },
+        headers: {
+          'X-BingApis-SDK': 'true',
+          'X-RapidAPI-Key': '91559ed112mshb8f361437369b5ap10f7d2jsn868baad3e673',
+          'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+        }
+      };
+      
+      const response = await axios.request(options);
+      setTopIndia(response.data.value);
+      console.log("DATA : ",response.data.value)
+      // console.log("Title :",response.data.value[0].name)
+      // console.log("Description :",response.data.value[0].description)
+      // console.log("URL :",response.data.value[0].url)
+      // console.log("Image URL :",response.data.value[0].image.thumbnail.contentUrl)
+      
     }
 
     // FETCHING TOP HEADLINES IN ENTERTAINMENT
     async function fetchtopEnt() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=entertainment&country=in&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopEnt(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN POLITICS
     async function fetchtopPol() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=politics&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopPol(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN BUSINESS
     async function fetchtopBus() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=business&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopBus(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN TECH
     async function fetchtopTech() {
       const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopTech(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     // FETCHING TOP HEADLINES IN SPORTS
     async function fetchtopSports() {
       const response = await axios.get(`https://newsapi.org/v2/everything?q=sports&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
       setTopSports(response.data);
-      console.log(response.data)
+      // console.log(response.data)
     }
 
     fetchtopSports();
@@ -95,11 +122,11 @@ export default function Home(articles) {
 
   if (!topIndia || !topEnt || !topPol || !topBus || !topTech || !topSports) return (
     <>
-    
+
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
 
-      <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
+        <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
           <div className='border-2 border-white text-white rounded-xl inline-flex items-center relative p-2'>
             Live Now
             <span className='absolute top-0 right-0 transform translate-x-0 translate-y-0 h-2 w-2 rounded-full bg-red-500 animate-ping'></span>
@@ -109,50 +136,50 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-          <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
 
         </div>
-      
+
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-        <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
-
-        </div>
-        <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
-        <div className='grid grid-cols-3 justify-evenly'>
-
-        <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
 
         </div>
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-        <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
 
         </div>
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-        <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
 
         </div>
         <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
         <div className='grid grid-cols-3 justify-evenly'>
 
-        <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
-          <span><SkeletonBox width={"30vw"}/></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+
+        </div>
+        <h2 className='text-white text-xl border-slate-100 p-2 animate-pulse'>Loading...</h2>
+        <div className='grid grid-cols-3 justify-evenly'>
+
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
+          <span><SkeletonBox width={"30vw"} /></span>
 
         </div>
 
@@ -166,7 +193,7 @@ export default function Home(articles) {
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
 
-      <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
+        <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
           <div className='border-2 border-white text-white rounded-xl inline-flex items-center relative p-2'>
             Live Now
             <span className='absolute top-0 right-0 transform translate-x-0 translate-y-0 h-2 w-2 rounded-full bg-red-500 animate-ping'></span>
@@ -175,24 +202,23 @@ export default function Home(articles) {
 
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in India</h2>
-        <div className='flex'>
+        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topIndia.articles.map((e,i) => {
-
+            topIndia.map((e, i) => {
+              if(i===3)return;
               return (<>
-                <NewsBox key={i}title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.name} description={e.description} url={e.url} urlToImage={e.image?.thumbnail?.contentUrl} />
               </>
               )
             })
           }
-
-
         </div>
 
-        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
-        <div className='flex'>
+
+        {/* <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
+        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topEnt.articles.map((e,i) => {
+            topEnt.articles.map((e, i) => {
 
               return (<>
                 <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
@@ -204,9 +230,9 @@ export default function Home(articles) {
         </div>
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Politics</h2>
-        <div className='flex'>
+        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topPol.articles.map((e,i) => {
+            topPol.articles.map((e, i) => {
 
               return (<>
                 <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
@@ -217,9 +243,9 @@ export default function Home(articles) {
         </div>
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Business</h2>
-        <div className='flex'>
+        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topBus.articles.map((e,i) => {
+            topBus.articles.map((e, i) => {
 
               return (<>
                 <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
@@ -230,22 +256,9 @@ export default function Home(articles) {
         </div>
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Technology</h2>
-        <div className='flex'>
+        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topTech.articles.map((e,i) => {
-
-              return (<>
-                <NewsBox key={i}title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
-              </>
-              )
-            })
-          }
-        </div>
-
-        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Sports</h2>
-        <div className='flex'>
-          {
-            topSports.articles.map((e,i) => {
+            topTech.articles.map((e, i) => {
 
               return (<>
                 <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
@@ -254,6 +267,19 @@ export default function Home(articles) {
             })
           }
         </div>
+
+        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Sports</h2>
+        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
+          {
+            topSports.articles.map((e, i) => {
+
+              return (<>
+                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+              </>
+              )
+            })
+          }
+        </div> */}
 
         <Footer />
 
