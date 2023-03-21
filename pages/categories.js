@@ -20,30 +20,30 @@ export const categories = () => {
     }
   }
 
-  useEffect(() => {
-    async function fetchCategoryData() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=${category}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=30&language=en`);
-      setData(response.data)
-      // set the state for category data
-    }
+  // useEffect(() => {
+  //   async function fetchCategoryData() {
+  //     const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=${category}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=30&language=en`);
+  //     setData(response.data)
+  //     // set the state for category data
+  //   }
 
-    if (category !== '') {
-      fetchCategoryData();
-    }
-  }, [category]);
+  //   if (category !== '') {
+  //     fetchCategoryData();
+  //   }
+  // }, [category]);
 
-  useEffect(() => {
-    async function fetchCountryData() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=15&page=${pageNumber}&language=en`);
-      // console.log(response.data);
-      setData(response.data)
-      // set the state for country data
-    }
+  // useEffect(() => {
+  //   async function fetchCountryData() {
+  //     const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=15&page=${pageNumber}&language=en`);
+  //     // console.log(response.data);
+  //     setData(response.data)
+  //     // set the state for country data
+  //   }
 
-    if (country !== '') {
-      fetchCountryData();
-    }
-  }, [country]);
+  //   if (country !== '') {
+  //     fetchCountryData();
+  //   }
+  // }, [country]);
 
 
   if (!data) {
