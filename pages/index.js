@@ -96,7 +96,7 @@ export default function Home(articles) {
     fetchtopEnt();
     fetchtopIndia();
   }, []);
-  
+
   // || !topEnt || !topPol || !topBus || !topTech || !topSports
   if (!topIndia ) return (
     <>
@@ -193,7 +193,7 @@ export default function Home(articles) {
         </div>
 
 
-        <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
+        {/* <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
             topEnt.articles.map((e, i) => {
@@ -257,7 +257,7 @@ export default function Home(articles) {
               )
             })
           }
-        </div>
+        </div> */}
 
         <Footer />
 
