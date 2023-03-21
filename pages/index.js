@@ -30,7 +30,7 @@ export default function Home(articles) {
     // FETCHING TOP HEADLINES IN INDIA
     async function fetchtopIndia() {
 
-      const url = 'http://eventregistry.org/api/v1/article/getArticles';
+      const url = 'https://eventregistry.org/api/v1/article/getArticles';
 
       const requestData = {
         "action": "getArticles",
