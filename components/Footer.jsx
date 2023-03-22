@@ -11,7 +11,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className='text-white flex flex-col h-52 mt-5'>
+    <footer className='text-white flex flex-col h-52 pt-5 bg-black'>
       <div id='footer-top' className='self-center'>
         <a href='#' className='flex justify-center text-xl' onClick={scrollToTop}>
           <BsArrowUpCircle className='mr-2 animate-bounce' />

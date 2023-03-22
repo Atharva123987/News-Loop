@@ -6,7 +6,7 @@ import newsImage from '../assets/news.jpg';
 
 export const NewsBox = ({title, description, url, urlToImage}) =>{
   const [imgSrc, setImgSrc] = useState(newsImage);
-  const [body,setBody] = useState(description.slice(0,200))
+  
   useEffect(() => {
     if (urlToImage) {
       setImgSrc(urlToImage);
@@ -29,11 +29,11 @@ export const NewsBox = ({title, description, url, urlToImage}) =>{
             alt="Article Image"
             width={500}
             height={500}
-            className="w-72"
+            className="w-72 max-h-56"
             unoptimized
           />
           <span className='text-xl  border-white'>{title}</span>
-          <p className='mt-2 '>{body}...</p>
+          <p className='mt-2 '>{description?description.slice(0,300):""}</p>
         </Link>
       </div>
     </>

@@ -28,87 +28,58 @@ export default function Home(articles) {
   useEffect(() => {
 
       // FETCHING TOP HEADLINES IN INDIA
-    // async function fetchtopIndia() {
-
-    //   const url = 'https://eventregistry.org/api/v1/article/getArticles';
-
-    //   const requestData = {
-    //     "action": "getArticles",
-        
-    //     "categoryUri" : "dmoz/Business/Accounting",
-    //     "articlesPage": 1,
-    //     "articlesCount": 3,
-    //     "articlesSortBy": "date",
-    //     "articlesSortByAsc": false,
-    //     "articlesArticleBodyLen": -1,
-    //     "resultType": "articles",
-    //     "apiKey": "318f6cff-6dec-4169-a016-91a71af1fdc1",
-    //     "forceMaxDataTimeWindow": 31
-    //   };
-
-    //   axios.get(url, {
-    //     params: requestData
-    //   })
-    //     .then(response => {
-    //       console.log(response.data.articles.results);
-    //       console.log(response.data.articles.results[0]);
-    //       console.log(response.data.articles.results);
-    //       setTopIndia(response.data.articles.results)
-    //     })
-    //     .catch(error => {
-    //       console.error(error);
-    //     });
-      // setTopIndia(response.data.value);
-      // console.log("DATA : ", response.data.value)
-
-
-    // }
+      async function fetchtopIndia() {
+        const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&country=in&language=en`);
+        console.log(response.data.results.slice(0,3))
+        setTopIndia(response.data.results.slice(0,3));
+      }
 
     // FETCHING TOP HEADLINES IN ENTERTAINMENT
+    
     async function fetchtopEnt() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_192645b3358a0994346a3ddcefd5ff7b2143f`);
-      console.log(response.data)
-      // setTopEnt(response.data);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=entertainment&language=en`);
+      console.log(response.data.results.slice(0,3))
+        setTopEnt(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN POLITICS
     async function fetchtopPol() {
-      const response = await axios.get(`https://newsapi.org/v2/everything?q=politics&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
-      setTopPol(response.data);
-      console.log(response.data)
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=politics&language=en`);
+      console.log(response.data.results.slice(0,3))
+        setTopPol(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN BUSINESS
     async function fetchtopBus() {
-      const response = await axios.get(`https://newsapi.org/v2/everything?q=business&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
-      setTopBus(response.data);
-      console.log(response.data)
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=business&language=en`);
+      console.log(response.data.results.slice(0,3))
+        setTopBus(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN TECH
     async function fetchtopTech() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=technology&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
-      setTopTech(response.data);
-      console.log(response.data)
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=technology&language=en`);
+      console.log(response.data.results.slice(0,3))
+        setTopTech(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN SPORTS
     async function fetchtopSports() {
-      const response = await axios.get(`https://newsapi.org/v2/everything?q=sports&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=3&language=en`);
-      setTopSports(response.data);
-      console.log(response.data)
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=sports&language=en`);
+      console.log(response.data.results.slice(0,3))
+        setTopSports(response.data.results.slice(0,3));
     }
 
-    // fetchtopSports();
-    // fetchtopTech();
-    // fetchtopBus();
-    // fetchtopPol();
+    fetchtopSports();
+    fetchtopTech();
+    fetchtopBus();
+    fetchtopPol();
     fetchtopEnt();
-    // fetchtopIndia();
+    fetchtopIndia();
   }, []);
 
-  // || !topEnt || !topPol || !topBus || !topTech || !topSports
-  if (!topIndia) return (
+  // 
+  if (!topIndia || !topEnt || !topPol || !topBus || !topTech || !topSports) return (
     <>
 
       <NavBar />
@@ -191,24 +162,25 @@ export default function Home(articles) {
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in India</h2>
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
-          {/* {
+          {
+            
             topIndia.map((e, i) => {
               return (<>
-                <NewsBox key={i} title={e.title} description={e.body} url={e.url} urlToImage={e.image} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} />
               </>
               )
             })
-          } */}
+          }
         </div>
 
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topEnt.articles.map((e, i) => {
+            topEnt.map((e, i) => {
 
               return (<>
-                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} />
               </>
               )
             })
@@ -219,10 +191,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Politics</h2>
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topPol.articles.map((e, i) => {
+            topPol.map((e, i) => {
 
               return (<>
-                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} />
               </>
               )
             })
@@ -232,10 +204,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Business</h2>
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topBus.articles.map((e, i) => {
+            topBus.map((e, i) => {
 
               return (<>
-                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} />
               </>
               )
             })
@@ -245,10 +217,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Technology</h2>
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topTech.articles.map((e, i) => {
+            topTech.map((e, i) => {
 
               return (<>
-                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+               <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} />
               </>
               )
             })
@@ -258,10 +230,10 @@ export default function Home(articles) {
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Sports</h2>
         <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
           {
-            topSports.articles.map((e, i) => {
+            topSports.map((e, i) => {
 
               return (<>
-                <NewsBox key={i} title={e.title} description={e.description} url={e.url} urlToImage={e.urlToImage} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} />
               </>
               )
             })

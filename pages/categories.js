@@ -5,25 +5,26 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SkeletonBox from "@/components/SkeletonBox";
 import Footer from "@/components/Footer";
-export const Categories = () => {
+export const categories = () => {
 
   const [category, setCategory] = useState('');
   const [country, setCountry] = useState('');
   const [data, setData] = useState(null);
-
+  const [flag, setFlag] = useState(1);
+  
   function handleData(dataFromChild) {
     if (dataFromChild === 'in' || dataFromChild === 'us') {
       setCountry(dataFromChild);
     }
-    if(dataFromChild !== 'in' || dataFromChild !== 'us') {
+    else if(dataFromChild !== 'in' || dataFromChild !== 'us') {
       setCategory(dataFromChild)
     }
   }
 
   useEffect(() => {
     async function fetchCategoryData() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?category=${category}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=30&language=en`);
-      setData(response.data)
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=${category}&language=en`);
+      setData(response.data.results);
       // set the state for category data
     }
 
@@ -31,44 +32,54 @@ export const Categories = () => {
       fetchCategoryData();
     }
   }, [category]);
-
+ 
   useEffect(() => {
     async function fetchCountryData() {
-      const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&sortBy=publishedAt&apiKey=${process.env.NEXT_PUBLIC_NEWS_KEY}&pageSize=15&page=${pageNumber}&language=en`);
-      // console.log(response.data);
-      setData(response.data)
-      // set the state for country data
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&country=${country}&language=en`);
+        setData(response.data.results);
+    }
+    async function firstFetch(){
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&country=in&language=en`);
+      setData(response.data.results);
     }
 
     if (country !== '') {
       fetchCountryData();
     }
+    if(flag){
+      setFlag(0);
+      firstFetch();
+      setCountry('in')
+    }
   }, [country]);
 
-
+  
   if (!data) {
     return (
       <>
         <NavBar />
 
-        <div className="flex bg-cyan-700">
+        <div className="flex bg-black w-auto ">
           <Sidebar sendData={handleData} />
           <div>
-            <h1 className="ml-5 text-white text-xl font-bold animate-pulse">Loading...</h1>
-            <div className="ml-5 mt-10 grid grid-cols-3 w-screen">
+            <h1 className="ml-10 text-white text-xl font-bold animate-pulse">Loading...</h1>
+            <div className="ml-10 mt-10 grid grid-cols-3 gap-[5vw] 2xl:bg-red-500 2xl:flex 2xl:flex-wrap">
 
-              <span><SkeletonBox width={"25vw"} /></span>
-              <span><SkeletonBox width={"25vw"} /></span>
-              <span className="mb-12"><SkeletonBox width={"25vw"} /></span>
+              <span className="w-72 "><SkeletonBox/></span>
+              <span className="w-72"><SkeletonBox/></span>
+              <span className="w-72 mb-12" ><SkeletonBox/></span>
 
-              <span><SkeletonBox width={"25vw"} /></span>
-              <span><SkeletonBox width={"25vw"} /></span>
-              <span className="mb-12"><SkeletonBox width={"25vw"} /></span>
+              <span className="w-72"><SkeletonBox/></span>
+              <span className="w-72"><SkeletonBox/></span>
+              <span className="w-72 mb-12" ><SkeletonBox/></span>
 
-              <span><SkeletonBox width={"25vw"} /></span>
-              <span><SkeletonBox width={"25vw"} /></span>
-              <span className="mb-12"><SkeletonBox width={"25vw"} /></span>
+
+              <span className="w-72"><SkeletonBox/></span>
+              <span className="w-72"><SkeletonBox/></span>
+              <span className="w-72 mb-12" ><SkeletonBox/></span>
+
             </div>
+            <Footer/>
           </div>
         </div>
 
@@ -81,32 +92,27 @@ export const Categories = () => {
     <>
       <NavBar />
 
-      <div className="flex bg-black">
+      <div className="flex bg-black ">
         <Sidebar sendData={handleData} />
-
-        <div className="grid grid-cols-3">
-
-          {data.articles.map((article, index) => (
-            <NewsBox
-              key={index}
-              title={article.title}
-              description={article.description}
-              url={article.url}
-              urlToImage={article.urlToImage}
-            />
-          ))}
+       
+        <div className="grid grid-cols-3 2xl:flex 2xl:flex-row">
+        
+          {
+            data.map((e, i) => {
+              return (<>
+                <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} />
+              </>
+              )
+            })
+          }
         </div>
-
-
-
-      </div>
-
+        </div>
+      <Footer/>
       {/* <Paginator/> */}
 
-      <Footer/>
 
 
     </>
   )
 }
-export default Categories;
+export default categories;
