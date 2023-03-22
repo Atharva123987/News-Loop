@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SkeletonBox from "@/components/SkeletonBox";
 import Footer from "@/components/Footer";
-export const Categories = () => {
+export const categories = () => {
 
   const [category, setCategory] = useState('');
   const [country, setCountry] = useState('');
@@ -115,4 +115,4 @@ export const Categories = () => {
     </>
   )
 }
-export default Categories;
+export default categories;
