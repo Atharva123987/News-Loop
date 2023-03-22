@@ -1,8 +1,12 @@
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import { useState } from "react";
-export const searchresult = ({data}) =>{
+export const searchresult = ({articles}) =>{
     const [results, setResults] = useState(data);
+
+    function handleData(){
+      
+    }
     return(
         <>
         <NavBar/>
@@ -11,7 +15,7 @@ export const searchresult = ({data}) =>{
           {/* {
             results.map((e, i) => {
               return (<>
-                <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} />
+                <NewsBox key={i} title={e.title} description={e.description} url={e.link} urlToImage={e.image_url} data={handleData} />
               </>
               )
             })

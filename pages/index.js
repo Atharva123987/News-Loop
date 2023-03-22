@@ -150,7 +150,7 @@ export default function Home(articles) {
   return (
     <>
       <NavBar />
-      <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
+      <div className=' bg-black flex-row justify-center h-auto overflow-hidden '>
 
         <div className='text-black flex justify-center text-xl font-bold m-5 relative'>
           <div className='border-2 border-white text-white rounded-xl inline-flex items-center relative p-2'>
@@ -161,7 +161,7 @@ export default function Home(articles) {
 
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in India</h2>
-        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
+        <div className='md:grid md:grid-cols-3 md:grid-rows-1 md:grid-flow-col flex flex-col'>
           {
             
             topIndia.map((e, i) => {
@@ -175,7 +175,7 @@ export default function Home(articles) {
 
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Entertainment</h2>
-        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
+        <div className='md:grid md:grid-cols-3 md:grid-rows-1 md:grid-flow-col flex flex-col'>
           {
             topEnt.map((e, i) => {
 
@@ -189,7 +189,7 @@ export default function Home(articles) {
         </div>
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Politics</h2>
-        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
+        <div className='md:grid md:grid-cols-3 md:grid-rows-1 md:grid-flow-col flex flex-col'>
           {
             topPol.map((e, i) => {
 
@@ -202,7 +202,7 @@ export default function Home(articles) {
         </div>
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Business</h2>
-        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
+        <div className='md:grid md:grid-cols-3 md:grid-rows-1 md:grid-flow-col flex flex-col'>
           {
             topBus.map((e, i) => {
 
@@ -215,7 +215,7 @@ export default function Home(articles) {
         </div>
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Technology</h2>
-        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
+        <div className='md:grid md:grid-cols-3 md:grid-rows-1 md:grid-flow-col flex flex-col'>
           {
             topTech.map((e, i) => {
 
@@ -228,7 +228,7 @@ export default function Home(articles) {
         </div>
 
         <h2 className='text-white text-xl border-b border-slate-100 p-2'>Top in Sports</h2>
-        <div className='grid grid-cols-3 grid-rows-1 grid-flow-col'>
+        <div className='md:grid md:grid-cols-3 md:grid-rows-1 md:grid-flow-col flex flex-col'>
           {
             topSports.map((e, i) => {
 
