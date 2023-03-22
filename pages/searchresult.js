@@ -1,12 +1,10 @@
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import { useState } from "react";
-export const Searchresult = ({articles}) =>{
-    const [results, setResults] = useState(data);
+export const Searchresult = ({}) =>{
+    const [results, setResults] = useState([]);
 
-    function handleData(){
-      
-    }
+   
     return(
         <>
         <NavBar/>
