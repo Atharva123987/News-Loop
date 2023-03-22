@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SkeletonBox from "@/components/SkeletonBox";
 import Footer from "@/components/Footer";
-export const categories = () => {
+export const Categories = () => {
 
   const [category, setCategory] = useState('');
   const [country, setCountry] = useState('');
@@ -63,7 +63,7 @@ export const categories = () => {
           <Sidebar sendData={handleData} />
           <div>
             <h1 className="ml-10 text-white text-xl font-bold animate-pulse">Loading...</h1>
-            <div className="ml-10 mt-10 grid grid-cols-3 gap-[5vw] 2xl:bg-red-500 2xl:flex 2xl:flex-wrap">
+            <div className="ml-10 mt-10 md:grid md:grid-cols-3 md:gap-[5vw]  ">
 
               <span className="w-72 "><SkeletonBox/></span>
               <span className="w-72"><SkeletonBox/></span>
@@ -115,4 +115,4 @@ export const categories = () => {
     </>
   )
 }
-export default categories;
+export default Categories;

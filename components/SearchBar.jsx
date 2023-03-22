@@ -16,7 +16,7 @@ export default function SearchBar(props) {
     const value = e.target.value;
     setSearchValue(value);
     try {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1930994a88e24b140fd9ca4e155244f4a95fca1&qInTitle=${value}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&qInTitle=${value}&language=en`);
       const data = response.data;
       setSuggestions(data.results);
     } catch (error) {
@@ -29,7 +29,7 @@ export default function SearchBar(props) {
     console.log('Search submitted');
     // Add code to perform the search here
     console.log("Search value:",searchValue)
-    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1930994a88e24b140fd9ca4e155244f4a95fc&q=${searchValue}&language=en`)
+    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&q=${searchValue}&language=en`)
     setArticles(response.data.results)
     console.log("RESULTS",response.data.results)
     router.push('/searchresult')
