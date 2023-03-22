@@ -23,7 +23,7 @@ export const Categories = () => {
 
   useEffect(() => {
     async function fetchCategoryData() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=${category}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&category=${category}&language=en`);
       setData(response.data.results);
       // set the state for category data
     }
@@ -35,11 +35,11 @@ export const Categories = () => {
  
   useEffect(() => {
     async function fetchCountryData() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&country=${country}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&country=${country}&language=en`);
         setData(response.data.results);
     }
     async function firstFetch(){
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&country=in&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&country=in&language=en`);
       setData(response.data.results);
     }
 

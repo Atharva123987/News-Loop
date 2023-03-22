@@ -29,7 +29,7 @@ export default function Home(articles) {
 
       // FETCHING TOP HEADLINES IN INDIA
       async function fetchtopIndia() {
-        const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&country=in&language=en`);
+        const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&country=in&language=en`);
         console.log(response.data.results.slice(0,3))
         setTopIndia(response.data.results.slice(0,3));
       }
@@ -37,35 +37,35 @@ export default function Home(articles) {
     // FETCHING TOP HEADLINES IN ENTERTAINMENT
     
     async function fetchtopEnt() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=entertainment&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&category=entertainment&language=en`);
       console.log(response.data.results.slice(0,3))
         setTopEnt(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN POLITICS
     async function fetchtopPol() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=politics&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&category=politics&language=en`);
       console.log(response.data.results.slice(0,3))
         setTopPol(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN BUSINESS
     async function fetchtopBus() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=business&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&category=business&language=en`);
       console.log(response.data.results.slice(0,3))
         setTopBus(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN TECH
     async function fetchtopTech() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=technology&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&category=technology&language=en`);
       console.log(response.data.results.slice(0,3))
         setTopTech(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN SPORTS
     async function fetchtopSports() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_NEWS_KEY}&category=sports&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&category=sports&language=en`);
       console.log(response.data.results.slice(0,3))
         setTopSports(response.data.results.slice(0,3));
     }
