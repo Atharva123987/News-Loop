@@ -3,7 +3,12 @@ import Img1 from '../assets/git.png'
 import Image from 'next/image';
 import Link from 'next/link'
 import SearchBar from './SearchBar';
-export const NavBar = () => {
+import { useState } from 'react';
+export const NavBar = (props) => {
+  const [articles,setArticles] = useState(null);
+  async function handleData(dataFromChild){
+    props.sendData(dataFromChild)
+  }
   return (
     <nav className="flex items-center  flex-wrap bg-white p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -11,7 +16,7 @@ export const NavBar = () => {
         <span className="ml-2 font-semibold text-xl tracking-tight text-black ">News Loop</span>
       </div>
       <div className="flex items-center ml-auto">
-        <div className='mr-10'><SearchBar /></div>
+        <div className='mr-10'><SearchBar sendData={handleData} /></div>
         
         <Link href='/'><button className="inline-block text-sm px-4 py-2 leading-none border rounded text-black border-black  hover:bg-slate-200 active:bg-slate-300 hover:bg-white mt-4 lg:mt-0 mr-4 hover:border-cyan-500">Home</button></Link>
 

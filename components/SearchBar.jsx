@@ -27,11 +27,11 @@ export default function SearchBar(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Search submitted');
-    // Add code to perform the search here
     console.log("Search value:",searchValue)
     const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&q=${searchValue}&language=en`)
     setArticles(response.data.results)
     console.log("RESULTS",response.data.results)
+    props.sendData(response.data.results)
     router.push('/searchresult')
   };
 
