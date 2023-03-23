@@ -9,6 +9,7 @@ import NewsBox from '@/components/NewsBox'
 import { useState, useEffect, use } from 'react'
 import SkeletonBox from '@/components/SkeletonBox'
 import Footer from '@/components/Footer'
+import NewsImg from '@/assets/news.jpg'
 const inter = Inter({ subsets: ['latin'] })
 
 
@@ -81,6 +82,12 @@ export default function Home(articles) {
   // 
   if (!topIndia || !topEnt || !topPol || !topBus || !topTech || !topSports) return (
     <>
+      <Head>
+        <title>News Loop</title>
+        <meta name='description' content={`Live news india`}/>
+        <meta property='og:image' content={NewsImg}/>
+        <meta property='og:title' content='Top news from categories'/>
+      </Head>
 
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>
