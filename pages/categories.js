@@ -5,11 +5,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SkeletonBox from "@/components/SkeletonBox";
 import Footer from "@/components/Footer";
+import Paginator from "@/components/Paginator";
 export const Categories = () => {
 
   const [category, setCategory] = useState('');
   const [country, setCountry] = useState('');
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(1);
   const [flag, setFlag] = useState(1);
   
   function handleData(dataFromChild) {
@@ -23,8 +25,10 @@ export const Categories = () => {
 
   useEffect(() => {
     async function fetchCategoryData() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&category=${category}&language=en`);
+      setLoading(1);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&category=${category}&language=en`);
       setData(response.data.results);
+      setLoading(0);
       // set the state for category data
     }
 
@@ -35,11 +39,14 @@ export const Categories = () => {
  
   useEffect(() => {
     async function fetchCountryData() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&country=${country}&language=en`);
+      setLoading(1);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&country=${country}&language=en`);
         setData(response.data.results);
+        setLoading(0);
     }
     async function firstFetch(){
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&country=in&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&country=in&language=en`);
+
       setData(response.data.results);
     }
 
@@ -53,8 +60,9 @@ export const Categories = () => {
     }
   }, [country]);
 
+
   
-  if (!data) {
+  if (!data || loading) {
     return (
       <>
         <NavBar />
@@ -107,8 +115,9 @@ export const Categories = () => {
           }
         </div>
         </div>
+        <Paginator/>
       <Footer/>
-      {/* <Paginator/> */}
+      
 
 
 

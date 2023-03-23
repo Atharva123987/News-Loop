@@ -1,22 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { HiSearch } from 'react-icons/hi';
 import classNames from 'classnames';
 import axios from 'axios';
 import { useRouter} from 'next/router';
-
-
-
+import { Form } from 'react-bootstrap';
+import {Typeahead} from 'react-bootstrap-typeahead'
 export default function SearchBar(props) {
   const [searchValue, setSearchValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const [flag, setFlag] = useState(1);
   const router = useRouter();
-  const [articles,setArticles] = useState([])
+  const [mouseover, setMouseover] = useState(1);
+
   const handleInputChange = async (e) => {
     const value = e.target.value;
     setSearchValue(value);
     try {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&qInTitle=${value}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&qInTitle=${value}&language=en`);
       const data = response.data;
       setSuggestions(data.results);
     } catch (error) {
@@ -24,24 +25,37 @@ export default function SearchBar(props) {
     }
   };
 
+  const focused = ()=>{
+    setFlag(true)
+  }
+  const blured = ()=>{
+    setFlag(false)
+  }
+  const mouseoverfunc = () =>{
+    setMouseover(1)
+  }
+  const mouseleavefunc = () =>{
+    setMouseover(0)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     console.log('Search submitted');
     console.log("Search value:",searchValue)
-    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193099036b48062494a68a2dabf0ec7cb9b98&q=${searchValue}&language=en`)
-    setArticles(response.data.results)
+    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&q=${searchValue}&language=en`)
     console.log("RESULTS",response.data.results)
-    props.sendData(response.data.results)
-    router.push('/searchresult')
+    props.setData(response.data.results);
+
+    
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex items-center">
+      <form onSubmit={handleSubmit} className="flex items-center" onFocus={focused} onBlur={blured} >
         <label htmlFor="simple-search" className="sr-only">
           Search
         </label>
-        <div className="relative w-full">
+        <div className="relative w-full" >
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <HiSearch className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </div>
@@ -55,8 +69,9 @@ export default function SearchBar(props) {
             autoComplete="off"
             required
           />
-          {suggestions.length > 0 && (
-            <ul className="absolute z-10 w-full bg-white rounded-lg shadow-lg py-2 mt-1 max-h-80 overflow-auto">
+          {
+          (mouseover || flag )&& suggestions.length > 0  && (
+            <ul className="absolute z-10 w-full bg-white rounded-lg shadow-lg py-2 mt-1 max-h-80 overflow-auto" onMouseOver={mouseoverfunc} onMouseLeave={mouseleavefunc}>
               {suggestions.map((suggestion,i) => (
                 <li
                   key={i}
@@ -77,6 +92,7 @@ export default function SearchBar(props) {
           <span className="sr-only">Search</span>
         </button>
       </form>
+     
     </>
   );
 }
