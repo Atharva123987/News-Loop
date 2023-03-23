@@ -13,7 +13,11 @@ export const Categories = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(1);
   const [flag, setFlag] = useState(1);
-  
+  const [pageNo, setPageNo] = useState(1);
+  const [nextPage, setNextPage] = useState(null);
+  const [change, setChange] = useState(0);
+  const [pageAddress, setPageAddress] = useState([0]); // ARRAY OF PAGE NUMBERS
+
   function handleData(dataFromChild) {
     if (dataFromChild === 'in' || dataFromChild === 'us') {
       setCountry(dataFromChild);
@@ -23,31 +27,45 @@ export const Categories = () => {
     }
   }
 
+  function handleNext(){
+    setChange(!change);
+    console.log(change)
+  }
   useEffect(() => {
     async function fetchCategoryData() {
       setLoading(1);
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&category=${category}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&category=${category}&page=${nextPage}&language=en`);
+      setNextPage(response.data.nextPage)
+      setPageAddress(current => [... current, nextPage])
+      setPageNo(pageNo+1);
       setData(response.data.results);
+      console.log("PAGE ADDRESS ARRAY :",pageAddress)
+      // console.log(response.data)
       setLoading(0);
       // set the state for category data
     }
-
     if (category !== '') {
       fetchCategoryData();
     }
-  }, [category]);
+  }, [category, change]);
  
   useEffect(() => {
     async function fetchCountryData() {
       setLoading(1);
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&country=${country}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&country=${country}&page=${nextPage}&language=en`);
         setData(response.data.results);
+        setNextPage(response.data.nextPage)
         setLoading(0);
+        
     }
+    
+  
     async function firstFetch(){
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&country=in&language=en`);
-
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&country=in&page&language=en`);
+      setNextPage(response.data.nextPage);
+      setPageAddress(current => [... current, nextPage])
       setData(response.data.results);
+      console.log("PAGE ADDRESS ARRAY :",)
     }
 
     if (country !== '') {
@@ -95,7 +113,7 @@ export const Categories = () => {
     )
   }
 
-  console.log(data);
+  
   return (
     <>
       <NavBar />
@@ -115,7 +133,9 @@ export const Categories = () => {
           }
         </div>
         </div>
-        <Paginator/>
+        <button className="bg-white text-black" onClick={handleNext}>NEXT</button>
+        <Paginator/>  
+        
       <Footer/>
       
 

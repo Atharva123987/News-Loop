@@ -17,7 +17,7 @@ export default function SearchBar(props) {
     const value = e.target.value;
     setSearchValue(value);
     try {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&qInTitle=${value}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&qInTitle=${value}&language=en`);
       const data = response.data;
       setSuggestions(data.results);
     } catch (error) {
@@ -42,7 +42,7 @@ export default function SearchBar(props) {
     
     console.log('Search submitted');
     console.log("Search value:",searchValue)
-    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19377c4d210b1017dd0913533850ee2791d15&q=${searchValue}&language=en`)
+    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&q=${searchValue}&language=en`)
     console.log("RESULTS",response.data.results)
     props.setData(response.data.results);
 
