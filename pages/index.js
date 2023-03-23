@@ -156,6 +156,12 @@ export default function Home(articles) {
 
   return (
     <>
+    <Head>
+        <title>News Loop</title>
+        <meta name='description' content={`Live news india`}/>
+        <meta property='og:image' content={NewsImg}/>
+        <meta property='og:title' content='Top news from categories'/>
+      </Head>
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden '>
 
