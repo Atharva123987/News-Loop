@@ -13,12 +13,13 @@ export default function SearchBar(props) {
   const router = useRouter();
   const [mouseover, setMouseover] = useState(1);
   const [nextPage,setNextPage] = useState(null);
+  const [i, setI] = useState(0);
 
   const handleInputChange = async (e) => {
     const value = e.target.value;
     setSearchValue(value);
     try {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&page=${nextPage}&qInTitle=${value}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19391c4e6b74f9c0de8876eadccbe326ed5d1&page=${nextPage}&qInTitle=${value}&language=en`);
       const data = response.data;
       setSuggestions(data.results);
     } catch (error) {
@@ -29,9 +30,8 @@ export default function SearchBar(props) {
   const handleKeyDown = (e) => {
     if (e.key === 'Tab') {
       e.preventDefault();
-      
-      // inputRefs.current[nextIndex].focus();
-      console.log("TAB PRESSED")
+       setSearchValue(suggestions[i].title)
+      setI(i+1);
     }
   };
 
@@ -85,7 +85,7 @@ export default function SearchBar(props) {
           />
           {
           (mouseover || flag )&& suggestions.length > 0  && (
-            <ul className="absolute z-10 w-full bg-white rounded-lg shadow-lg py-2 mt-1 max-h-80 overflow-auto" onMouseOver={mouseoverfunc} onMouseLeave={mouseleavefunc} >
+            <ul className="absolute z-10 w-full bg-white rounded-lg shadow-lg py-2 mt-1 max-h-80 overflow-auto " onMouseOver={mouseoverfunc} onMouseLeave={mouseleavefunc} >
               {suggestions.map((suggestion,i) => (
                 <li
                   key={i}

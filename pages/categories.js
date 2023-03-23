@@ -1,6 +1,7 @@
 import NavBar from "@/components/NavBar";
 import NewsBox from "@/components/NewsBox";
 import Sidebar from "@/components/Sidebar";
+import { animateScroll } from 'react-scroll';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SkeletonBox from "@/components/SkeletonBox";
@@ -54,11 +55,12 @@ export const Categories = () => {
   function handleNext(){
     nextPageLoad();
     setChange(!change);
+    animateScroll.scrollToTop();
   }
   useEffect(() => {
     async function fetchCategoryData() {
       setLoading(1);
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&category=${category}&page=${nextPage}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19391c4e6b74f9c0de8876eadccbe326ed5d1&category=${category}&page=${nextPage}&language=en`);
       setNextPage(await response.data.nextPage)
       setPageAddress(current => [... current, nextPage])
       setPageNo(pageNo+1);
@@ -76,7 +78,7 @@ export const Categories = () => {
   useEffect(() => {
     async function fetchCountryData() {
       setLoading(1);
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&country=${country}&page=${nextPage}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19391c4e6b74f9c0de8876eadccbe326ed5d1&country=${country}&page=${nextPage}&language=en`);
         setData(response.data.results);
         setNextPage(response.data.nextPage)
         setLoading(0);
@@ -85,7 +87,7 @@ export const Categories = () => {
     
   
     async function firstFetch(){
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&country=in&page&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19391c4e6b74f9c0de8876eadccbe326ed5d1&country=in&page&language=en`);
       setNextPage(await response.data.nextPage);
       setPageAddress(current => [... current, nextPage])
       setData(response.data.results);
