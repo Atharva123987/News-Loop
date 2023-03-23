@@ -7,12 +7,9 @@ import {GiLightBulb} from 'react-icons/gi'
 import {MdOutlineSportsCricket} from 'react-icons/md'
 import {GiMoneyStack} from 'react-icons/gi'
 import {MdOutlineHealthAndSafety} from 'react-icons/md'
-import Link  from "next/link";
-import { useState } from "react";
 const Sidebar = (props) => {
 
     function handleClick(e){
-        console.log("data-value", e.target.getAttribute('data-name').trim())
         props.sendData(e.target.getAttribute('data-name').trim()) 
     }
 

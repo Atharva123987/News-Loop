@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import {  useState } from 'react';
 import { HiSearch } from 'react-icons/hi';
-import classNames from 'classnames';
 import axios from 'axios';
 import { useRouter} from 'next/router';
-import { Form } from 'react-bootstrap';
-import {Typeahead} from 'react-bootstrap-typeahead'
 export default function SearchBar(props) {
   const [searchValue, setSearchValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -19,7 +15,7 @@ export default function SearchBar(props) {
     const value = e.target.value;
     setSearchValue(value);
     try {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19391c4e6b74f9c0de8876eadccbe326ed5d1&page=${nextPage}&qInTitle=${value}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&page=${nextPage}&qInTitle=${value}&language=en`);
       const data = response.data;
       setSuggestions(data.results);
     } catch (error) {
@@ -51,10 +47,7 @@ export default function SearchBar(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    console.log('Search submitted');
-    console.log("Search value:",searchValue)
-    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&q=${searchValue}&language=en`)
-    console.log("RESULTS",response.data.results)
+    const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&q=${searchValue}&language=en`)
     setNextPage(response.data.nextPage);
     props.setData(response.data.results);
 

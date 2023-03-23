@@ -25,21 +25,17 @@ export const Categories = () => {
           setPageNo(pageNo-1);
           setStart(start-10);
           setEnd(end-10);
-          console.log("Going to prev page")
       }
       else{
-          console.log("You cannot go to prev page")
       }
   }
   function nextPageLoad(){
       if(pageNo === 10){
-          console.log("You cannot go to next page")
       }
       else{
           setPageNo(pageNo+1);
           setStart(start+10);
           setEnd(end+10);
-          console.log("Going to next page")
       }
   }
 
@@ -60,15 +56,12 @@ export const Categories = () => {
   useEffect(() => {
     async function fetchCategoryData() {
       setLoading(1);
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19391c4e6b74f9c0de8876eadccbe326ed5d1&category=${category}&page=${nextPage}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&category=${category}&page=${nextPage}&language=en`);
       setNextPage(await response.data.nextPage)
       setPageAddress(current => [... current, nextPage])
       setPageNo(pageNo+1);
       setData(response.data.results);
-      console.log("PAGE ADDRESS ARRAY :",pageAddress)
-      // console.log(response.data)
       setLoading(0);
-      // set the state for category data
     }
     if (category !== '') {
       fetchCategoryData();
@@ -78,7 +71,7 @@ export const Categories = () => {
   useEffect(() => {
     async function fetchCountryData() {
       setLoading(1);
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19391c4e6b74f9c0de8876eadccbe326ed5d1&country=${country}&page=${nextPage}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&country=${country}&page=${nextPage}&language=en`);
         setData(response.data.results);
         setNextPage(response.data.nextPage)
         setLoading(0);
@@ -87,11 +80,10 @@ export const Categories = () => {
     
   
     async function firstFetch(){
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19391c4e6b74f9c0de8876eadccbe326ed5d1&country=in&page&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&country=in&page&language=en`);
       setNextPage(await response.data.nextPage);
       setPageAddress(current => [... current, nextPage])
       setData(response.data.results);
-      console.log("PAGE ADDRESS ARRAY :",)
     }
 
     if (country !== '') {

@@ -18,21 +18,17 @@ export const Search = () => {
           setPageNo(pageNo-1);
           setStart(start-10);
           setEnd(end-10);
-          console.log("Going to prev page")
       }
       else{
-          console.log("You cannot go to prev page")
       }
   }
   function nextPageLoad(){
       if(pageNo === 10){
-          console.log("You cannot go to next page")
       }
       else{
           setPageNo(pageNo+1);
           setStart(start+10);
           setEnd(end+10);
-          console.log("Going to next page")
       }
   }
 
@@ -43,7 +39,6 @@ export const Search = () => {
   }
 
   async function handleData(dataFromChild) {
-    console.log("DATA HERE!!", dataFromChild);
     setResults(dataFromChild);
   }
   
@@ -59,7 +54,6 @@ export const Search = () => {
           <div className="text-white flex justify-center mt-10 animate-bounce"  >
             <span><BsArrow90DegUp /></span> Enter above to search for articles...
           </div>
-          {/* <Paginator/> */}
 
         </div>
       </>
