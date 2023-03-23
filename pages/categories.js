@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SkeletonBox from "@/components/SkeletonBox";
 import Footer from "@/components/Footer";
-import Paginator from "@/components/Paginator";
 export const Categories = () => {
 
   const [category, setCategory] = useState('');
@@ -13,10 +12,35 @@ export const Categories = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(1);
   const [flag, setFlag] = useState(1);
-  const [pageNo, setPageNo] = useState(1);
+  const [pageNo, setPageNo] = useState(1); // PAGE NUMBER VARIABLE
   const [nextPage, setNextPage] = useState(null);
   const [change, setChange] = useState(0);
   const [pageAddress, setPageAddress] = useState([0]); // ARRAY OF PAGE NUMBERS
+  const [start, setStart] = useState(1);
+  const [end, setEnd] = useState(10);
+
+  function prevPageLoad(){
+      if(pageNo > 1){
+          setPageNo(pageNo-1);
+          setStart(start-10);
+          setEnd(end-10);
+          console.log("Going to prev page")
+      }
+      else{
+          console.log("You cannot go to prev page")
+      }
+  }
+  function nextPageLoad(){
+      if(pageNo === 10){
+          console.log("You cannot go to next page")
+      }
+      else{
+          setPageNo(pageNo+1);
+          setStart(start+10);
+          setEnd(end+10);
+          console.log("Going to next page")
+      }
+  }
 
   function handleData(dataFromChild) {
     if (dataFromChild === 'in' || dataFromChild === 'us') {
@@ -28,14 +52,14 @@ export const Categories = () => {
   }
 
   function handleNext(){
+    nextPageLoad();
     setChange(!change);
-    console.log(change)
   }
   useEffect(() => {
     async function fetchCategoryData() {
       setLoading(1);
       const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&category=${category}&page=${nextPage}&language=en`);
-      setNextPage(response.data.nextPage)
+      setNextPage(await response.data.nextPage)
       setPageAddress(current => [... current, nextPage])
       setPageNo(pageNo+1);
       setData(response.data.results);
@@ -62,7 +86,7 @@ export const Categories = () => {
   
     async function firstFetch(){
       const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&country=in&page&language=en`);
-      setNextPage(response.data.nextPage);
+      setNextPage(await response.data.nextPage);
       setPageAddress(current => [... current, nextPage])
       setData(response.data.results);
       console.log("PAGE ADDRESS ARRAY :",)
@@ -76,10 +100,9 @@ export const Categories = () => {
       firstFetch();
       setCountry('in')
     }
-  }, [country]);
+  }, [country, change]);
 
 
-  
   if (!data || loading) {
     return (
       <>
@@ -133,8 +156,22 @@ export const Categories = () => {
           }
         </div>
         </div>
-        <button className="bg-white text-black" onClick={handleNext}>NEXT</button>
-        <Paginator/>  
+        
+        <div>
+        <div class="flex flex-col items-center bg-black">
+  <span class="text-sm text-white ">
+      Showing <span class="font-semibold text-white">{start}</span> to <span class="font-semibold text-white ">{end}</span> of <span class="font-semibold text-white ">100</span> Entries
+  </span>
+  <div class="inline-flex mt-2 xs:mt-0">
+      <button class="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900   " onClick={prevPageLoad} >
+          Prev
+      </button>
+      <button class="px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 " onClick={handleNext} >
+          Next
+      </button>
+  </div>
+</div>
+        </div>
         
       <Footer/>
       

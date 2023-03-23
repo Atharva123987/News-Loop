@@ -12,18 +12,29 @@ export default function SearchBar(props) {
   const [flag, setFlag] = useState(1);
   const router = useRouter();
   const [mouseover, setMouseover] = useState(1);
+  const [nextPage,setNextPage] = useState(null);
 
   const handleInputChange = async (e) => {
     const value = e.target.value;
     setSearchValue(value);
     try {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&qInTitle=${value}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&page=${nextPage}&qInTitle=${value}&language=en`);
       const data = response.data;
       setSuggestions(data.results);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      
+      // inputRefs.current[nextIndex].focus();
+      console.log("TAB PRESSED")
+    }
+  };
+
 
   const focused = ()=>{
     setFlag(true)
@@ -44,11 +55,13 @@ export default function SearchBar(props) {
     console.log("Search value:",searchValue)
     const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_1938691a9ac78f174de9d2b99075296c9c810&q=${searchValue}&language=en`)
     console.log("RESULTS",response.data.results)
+    setNextPage(response.data.nextPage);
     props.setData(response.data.results);
 
     
   };
 
+  
   return (
     <>
       <form onSubmit={handleSubmit} className="flex items-center" onFocus={focused} onBlur={blured} >
@@ -66,12 +79,13 @@ export default function SearchBar(props) {
             placeholder="Search"
             value={searchValue}
             onChange={handleInputChange}
+            onKeyDown={e => handleKeyDown(e)}
             autoComplete="off"
             required
           />
           {
           (mouseover || flag )&& suggestions.length > 0  && (
-            <ul className="absolute z-10 w-full bg-white rounded-lg shadow-lg py-2 mt-1 max-h-80 overflow-auto" onMouseOver={mouseoverfunc} onMouseLeave={mouseleavefunc}>
+            <ul className="absolute z-10 w-full bg-white rounded-lg shadow-lg py-2 mt-1 max-h-80 overflow-auto" onMouseOver={mouseoverfunc} onMouseLeave={mouseleavefunc} >
               {suggestions.map((suggestion,i) => (
                 <li
                   key={i}
