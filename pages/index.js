@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import Imga from '../assets/favicon.png'
 import NavBar from '@/components/NavBar'
 import axios from 'axios';
 import NewsBox from '@/components/NewsBox'
@@ -25,6 +22,7 @@ export default function Home(articles) {
   const [topBus, setTopBus] = useState(null);
   const [topTech, setTopTech] = useState(null);
   const [topSports, setTopSports] = useState(null);
+  
 
   useEffect(() => {
 
@@ -80,7 +78,7 @@ export default function Home(articles) {
         <meta name='description' content={`Live news india`}/>
         <meta property='og:image' content={NewsImg}/>
         <meta property='og:title' content='Top news from categories'/>
-      </Head>
+      </Head> 
 
       <NavBar />
       <div className=' bg-black flex-row justify-center h-auto overflow-hidden'>

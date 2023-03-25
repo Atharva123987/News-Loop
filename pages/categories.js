@@ -20,6 +20,7 @@ export const Categories = () => {
   const [start, setStart] = useState(1);
   const [end, setEnd] = useState(10);
 
+  // For pagination
   function prevPageLoad(){
       if(pageNo > 1){
           setPageNo(pageNo-1);
