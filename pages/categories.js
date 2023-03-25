@@ -56,7 +56,7 @@ export const Categories = () => {
   useEffect(() => {
     async function fetchCategoryData() {
       setLoading(1);
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&category=${category}&page=${nextPage}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&category=${category}&page=${nextPage}&language=en`);
       setNextPage(await response.data.nextPage)
       setPageAddress(current => [... current, nextPage])
       setPageNo(pageNo+1);
@@ -71,7 +71,7 @@ export const Categories = () => {
   useEffect(() => {
     async function fetchCountryData() {
       setLoading(1);
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&country=${country}&page=${nextPage}&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&country=${country}&page=${nextPage}&language=en`);
         setData(response.data.results);
         setNextPage(response.data.nextPage)
         setLoading(0);
@@ -80,7 +80,7 @@ export const Categories = () => {
     
   
     async function firstFetch(){
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&country=in&page&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&country=in&page&language=en`);
       setNextPage(await response.data.nextPage);
       setPageAddress(current => [... current, nextPage])
       setData(response.data.results);

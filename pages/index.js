@@ -30,37 +30,37 @@ export default function Home(articles) {
 
       // FETCHING TOP HEADLINES IN INDIA
       async function fetchtopIndia() {
-        const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&country=in&language=en`);
+        const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&country=in&language=en`);
         setTopIndia(response.data.results.slice(0,3));
       }
 
     // FETCHING TOP HEADLINES IN ENTERTAINMENT
     async function fetchtopEnt() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&category=entertainment&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&category=entertainment&language=en`);
         setTopEnt(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN POLITICS
     async function fetchtopPol() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&category=politics&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&category=politics&language=en`);
         setTopPol(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN BUSINESS
     async function fetchtopBus() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&category=business&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&category=business&language=en`);
         setTopBus(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN TECH
     async function fetchtopTech() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&category=technology&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&category=technology&language=en`);
         setTopTech(response.data.results.slice(0,3));
     }
 
     // FETCHING TOP HEADLINES IN SPORTS
     async function fetchtopSports() {
-      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_193939041275f751217f8a716cf574c903412&category=sports&language=en`);
+      const response = await axios.get(`https://newsdata.io/api/1/news?apikey=pub_19486d236a24801ce9cafd13baa82c963b1ea&category=sports&language=en`);
         setTopSports(response.data.results.slice(0,3));
     }
 
