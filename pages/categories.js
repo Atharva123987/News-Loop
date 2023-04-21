@@ -103,11 +103,11 @@ export const Categories = () => {
       <>
         <NavBar />
 
-        <div className="flex bg-black w-auto ">
+        <div className="md:grid md:grid-cols-3 2xl:flex 2xl:flex-row">
           <Sidebar sendData={handleData} />
           <div>
-            <h1 className="ml-10 text-white text-xl font-bold animate-pulse">Loading...</h1>
-            <div className="ml-10 mt-10 md:grid md:grid-cols-3 md:gap-[5vw]  ">
+            <h1 className="2xl:ml-10 text-white text-xl font-bold animate-pulse">Loading...</h1>
+            <div className="2xl:ml-10 mt-10 md:grid md:grid-cols-3 md:gap-[5vw]  ">
 
               <span className="w-72 "><SkeletonBox/></span>
               <span className="w-72"><SkeletonBox/></span>
@@ -134,12 +134,13 @@ export const Categories = () => {
   
   return (
     <>
+    
       <NavBar />
 
-      <div className="flex bg-black ">
+      <div className="md:flex bg-black ">
         <Sidebar sendData={handleData} />
        
-        <div className="grid grid-cols-3 2xl:flex 2xl:flex-row">
+        <div className="md:grid md:grid-cols-3 2xl:flex 2xl:flex-row">
         
           {
             data.map((e, i) => {

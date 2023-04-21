@@ -14,7 +14,7 @@ const Sidebar = (props) => {
     }
 
     return (
-        <div className="h-screen bg-black text-white w-42">
+        <div className="2xl:h-screen bg-black text-white w-42">
 
             <div className="py-4 px-2">
                 <h1 className="text-3xl font-bold uppercase">Categories</h1>

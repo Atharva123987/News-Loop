@@ -11,7 +11,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className='text-white flex flex-col h-52 pt-5 bg-black'>
+    <footer className='text-white md:flex md:flex-col h-52 pt-5 bg-black'>
       <div id='footer-top' className='self-center'>
         <a href='#' className='flex justify-center text-xl' onClick={scrollToTop}>
           <BsArrowUpCircle className='mr-2 animate-bounce' />
@@ -20,7 +20,7 @@ const Footer = () => {
       </div>
       <div id='footer-bottom' className='flex justify-between'>
 
-        <div id='footer-left' className='flex flex-col ml-40 mt-10'>
+        <div id='footer-left' className='flex flex-col md:ml-40 mt-10'>
           <Link href='/' className='bg-white  text-black mb-5 hover:bg-cyan-400'>
             <p className='m-3 w-20 '>Home</p>
           </Link>
