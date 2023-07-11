@@ -22,7 +22,7 @@ export const NewsBox = ({title, description, url, urlToImage}) =>{
         m-2 bg-black shadow-lg shadow-white/20 border border-white/40  hover:shadow-cyan-500/50  hover:border-cyan-300/50 text-white hover:cursor-pointer
         transition ease-in-out delay-50 hover:scale-105 hover:text-cyan-100 active:text-cyan-600 duration-300
         p-5  
-      ">     
+      " id='article'>     
         <Link href={`${url}`} >
           <Image
             src={imgSrc}
